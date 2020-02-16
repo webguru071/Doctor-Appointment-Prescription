@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label133 = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -142,14 +142,14 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(477, 84);
             this.dataGridViewX1.Name = "dataGridViewX1";
@@ -476,6 +476,7 @@
             this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.richTextBox1.Location = new System.Drawing.Point(142, 100);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(255, 31);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
@@ -523,6 +524,7 @@
             this.label101.Size = new System.Drawing.Size(51, 13);
             this.label101.TabIndex = 124;
             this.label101.Text = "FAMILY";
+            this.label101.Visible = false;
             // 
             // label102
             // 
@@ -534,6 +536,7 @@
             this.label102.Size = new System.Drawing.Size(81, 13);
             this.label102.TabIndex = 123;
             this.label102.Text = "CARD VALID";
+            this.label102.Visible = false;
             // 
             // label99
             // 
@@ -545,6 +548,7 @@
             this.label99.Size = new System.Drawing.Size(83, 13);
             this.label99.TabIndex = 121;
             this.label99.Text = "PREGNENCY";
+            this.label99.Visible = false;
             // 
             // label100
             // 
@@ -556,6 +560,7 @@
             this.label100.Size = new System.Drawing.Size(99, 13);
             this.label100.TabIndex = 122;
             this.label100.Text = "CARD EXPIRED";
+            this.label100.Visible = false;
             // 
             // buttonX1
             // 
@@ -569,6 +574,7 @@
             this.buttonX1.Symbol = "57345";
             this.buttonX1.SymbolSet = DevComponents.DotNetBar.eSymbolSet.Material;
             this.buttonX1.TabIndex = 120;
+            this.buttonX1.Visible = false;
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // richTextBox27
@@ -580,6 +586,7 @@
             this.richTextBox27.Size = new System.Drawing.Size(74, 24);
             this.richTextBox27.TabIndex = 118;
             this.richTextBox27.Text = "";
+            this.richTextBox27.Visible = false;
             this.richTextBox27.TextChanged += new System.EventHandler(this.richTextBox27_TextChanged);
             // 
             // label98
@@ -592,6 +599,7 @@
             this.label98.Size = new System.Drawing.Size(58, 13);
             this.label98.TabIndex = 119;
             this.label98.Text = "CARD ID";
+            this.label98.Visible = false;
             // 
             // richTextBox8
             // 
@@ -602,6 +610,7 @@
             this.richTextBox8.Size = new System.Drawing.Size(94, 24);
             this.richTextBox8.TabIndex = 125;
             this.richTextBox8.Text = "";
+            this.richTextBox8.Visible = false;
             this.richTextBox8.TextChanged += new System.EventHandler(this.richTextBox8_TextChanged);
             // 
             // label1
@@ -614,6 +623,7 @@
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 126;
             this.label1.Text = "HOSPITAL REG";
+            this.label1.Visible = false;
             // 
             // button5
             // 

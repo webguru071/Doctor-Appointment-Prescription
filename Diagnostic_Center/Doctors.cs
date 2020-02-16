@@ -19,16 +19,17 @@ namespace Diagnostic_Center
         string test_id = "";
         string doctor;
         string drugs_name;
+        bool newPatient = false;
         connection db = new connection();
         string reg_no;
         public Doctors()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            string formattedDate = DateTime.Now.ToString();
-            dateTimePicker1.Text = formattedDate;
-            //  dateTimeInput1.Text = formattedDate;
-             show_appointment();
+            string formattedDate = DateTime.Today.ToString();
+            //dateTimePicker1.Text = formattedDate;
+            dateTimeInput1.Text = formattedDate;
+            show_appointment();
             show_drugs();
             show_test_name();
             show_doctor();
@@ -143,47 +144,47 @@ namespace Diagnostic_Center
 
             }
 
-           /* int i = 0;
-            int c = dataGridViewX3.Rows.Count;
-            for (i = 0; i <c-1; i++)
-            {
-                string x = dataGridViewX3.Rows[i].Cells[1].Value.ToString();
-                string input = x;
-                string pattern = richTextBox7.Text;
-                Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            /* int i = 0;
+             int c = dataGridViewX3.Rows.Count;
+             for (i = 0; i <c-1; i++)
+             {
+                 string x = dataGridViewX3.Rows[i].Cells[1].Value.ToString();
+                 string input = x;
+                 string pattern = richTextBox7.Text;
+                 Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
-                if (regex.IsMatch(input))
-                {
-                    DataGridViewRow rowToSelect = this.dataGridViewX3.Rows[i];
+                 if (regex.IsMatch(input))
+                 {
+                     DataGridViewRow rowToSelect = this.dataGridViewX3.Rows[i];
 
-                    rowToSelect.Selected = true;
-
-
-
-                    rowToSelect.Cells[0].Selected = true;
-
-                    this.dataGridViewX3.CurrentCell = rowToSelect.Cells[0];
-
-                    this.dataGridViewX3.BeginEdit(true);
-                }
-                    
-                else
-                {
-                   
-                }
-              
-            }
-           DataGridViewRow rowToSelect = this.dataGridViewX3.Rows[5];
-
-            rowToSelect.Selected = true;
+                     rowToSelect.Selected = true;
 
 
 
-            rowToSelect.Cells[0].Selected = true;
+                     rowToSelect.Cells[0].Selected = true;
 
-            this.dataGridViewX3.CurrentCell = rowToSelect.Cells[0];
+                     this.dataGridViewX3.CurrentCell = rowToSelect.Cells[0];
 
-            this.dataGridViewX3.BeginEdit(true);*/
+                     this.dataGridViewX3.BeginEdit(true);
+                 }
+
+                 else
+                 {
+
+                 }
+
+             }
+            DataGridViewRow rowToSelect = this.dataGridViewX3.Rows[5];
+
+             rowToSelect.Selected = true;
+
+
+
+             rowToSelect.Cells[0].Selected = true;
+
+             this.dataGridViewX3.CurrentCell = rowToSelect.Cells[0];
+
+             this.dataGridViewX3.BeginEdit(true);*/
         }
         //**********************************************************************************************************************
         private void button2_Click(object sender, EventArgs e)
@@ -223,7 +224,7 @@ namespace Diagnostic_Center
                 update_diagnosis();
                 db.sql.Close();
                 db.sql.Open();
-                SqlCommand cmd2 = new SqlCommand("update advice set advice=N'" + richTextBox12.Text + "',days=N'" + days_bac+ "' where reg_no='" + richTextBox1.Text + "'", db.sql);
+                SqlCommand cmd2 = new SqlCommand("update advice set advice=N'" + richTextBox12.Text + "',days=N'" + days_bac + "' where reg_no='" + richTextBox1.Text + "'", db.sql);
                 cmd2.ExecuteNonQuery();
                 MessageBox.Show("Data Saved Successfull");
                 db.sql.Close();
@@ -275,14 +276,26 @@ namespace Diagnostic_Center
         {
             try
             {
-                if (richTextBox1.Text == "" || richTextBox2.Text == "" || richTextBox4.Text == "")
+                if (string.IsNullOrEmpty(richTextBox1.Text) || !int.TryParse(richTextBox1.Text, out int n))
                 {
-                    MessageBox.Show("Please give Patient Information");
+                    MessageBox.Show("Please Give Numeric Appointment Number.");
+                }
+                else if (string.IsNullOrEmpty(richTextBox2.Text))
+                {
+                    MessageBox.Show("Please Give Patient Name.");
+                }
+                else if (string.IsNullOrEmpty(richTextBox4.Text) && int.TryParse(richTextBox4.Text, out int c))
+                {
+                    MessageBox.Show("Please Give Patient Age.");
                 }
                 else
                 {
                     db.sql.Close();
                     db.sql.Open();
+                    if (string.IsNullOrEmpty(drugs_name))
+                    {
+                        drugs_name = richTextBox6.Text;
+                    }
 
                     SqlCommand cmd = new SqlCommand("insert into prescription(reg_no,doctors_name,drugs_name)values(N'" + richTextBox1.Text + "',N'" + doctor + "',N'" + drugs_name + "')", db.sql);
                     cmd.ExecuteNonQuery();
@@ -295,7 +308,7 @@ namespace Diagnostic_Center
                 MessageBox.Show(ex.ToString());
             }
         }
-//*******************************************************************************************************************************
+        //*******************************************************************************************************************************
 
 
         void show_prescription()
@@ -327,7 +340,7 @@ namespace Diagnostic_Center
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnLoadPres_Click(object sender, EventArgs e)
         {
 
             try
@@ -351,15 +364,15 @@ namespace Diagnostic_Center
                     string sex = read[4].ToString();
                     string referance = read[5].ToString();
                     string date = read[6].ToString();
-                    DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
-                    string dd = convert.ToString("dd/MM/yyyy");
+                    //DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                    //string dd = convert.ToString("dd/MM/yyyy");
                     doctor = read[7].ToString();
                     richTextBox2.Text = name;
                     richTextBox3.Text = address;
                     richTextBox4.Text = age;
                     comboBoxEx3.Text = sex;
                     richTextBox5.Text = referance;
-                    dateTimeInput1.Text = dd.ToString();
+                    dateTimeInput1.Text = date;
 
                 }
                 if (d == 0)
@@ -672,7 +685,7 @@ namespace Diagnostic_Center
 
             }
         }
-       //************************************************
+        //************************************************
 
 
         void show_drugs2()
@@ -711,8 +724,8 @@ namespace Diagnostic_Center
 
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -875,7 +888,7 @@ namespace Diagnostic_Center
                 double p = Convert.ToDouble(richTextBox15.Text);
                 db.sql.Close();
                 db.sql.Open();
-                SqlCommand cmd = new SqlCommand("insert into diagnostic_list(id,name,price,type)values('" + richTextBox16.Text+ "','" + richTextBox14.Text + "','" + p + "','" + comboBox2.Text + "')", db.sql);
+                SqlCommand cmd = new SqlCommand("insert into diagnostic_list(id,name,price,type)values('" + richTextBox16.Text + "','" + richTextBox14.Text + "','" + p + "','" + comboBox2.Text + "')", db.sql);
                 int a = cmd.ExecuteNonQuery();
                 if (a > 0)
                 {
@@ -1006,8 +1019,8 @@ namespace Diagnostic_Center
                     string sex = read[4].ToString();
                     string referance = read[5].ToString();
                     string date = read[6].ToString();
-                    DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
-                    string dd = convert.ToString("dd/MM/yyyy");
+                    //DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                    //string dd = convert.ToString("dd/MM/yyyy");
                     doctor = read[7].ToString();
                     richTextBox2.Text = name;
                     richTextBox3.Text = address;
@@ -1015,8 +1028,6 @@ namespace Diagnostic_Center
                     comboBoxEx3.Text = sex;
                     richTextBox5.Text = referance;
                     dateTimeInput1.Text = date;
-
-
                 }
 
                 db.sql.Close();
@@ -1045,7 +1056,7 @@ namespace Diagnostic_Center
                     if (c > 0)
                     {
                         comboBoxEx1.Items.Add(name);
-                        
+
 
                     }
                 }
@@ -1092,6 +1103,49 @@ namespace Diagnostic_Center
             va.Show();
         }
 
-       
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnNewPatient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                newPatient = true;
+                int x = 0;
+                db.sql.Close();
+                db.sql.Open();
+                int c = 0;
+                SqlCommand cmd = new SqlCommand("select max(reg_no) from appointment", db.sql);
+                SqlDataReader read = cmd.ExecuteReader();
+                while (read.Read())
+                {
+                    x = Convert.ToInt32(read[0].ToString());
+                    c++;
+                }
+
+                if (c > 0)
+                {
+                    richTextBox1.Text = (x + 1).ToString();
+                    richTextBox2.Clear();
+                    richTextBox3.Clear();
+                    richTextBox4.Clear();
+                    comboBoxEx3.Text = "";
+                    richTextBox5.Clear();
+                    comboBoxEx1.Text = "";
+                    richTextBox6.Clear();
+                }
+                else
+                {
+                    richTextBox1.Text = "1";
+                }
+                db.sql.Close();
+            }
+            catch
+            {
+                richTextBox1.Text = "1";
+            }
+        }
     }
 }

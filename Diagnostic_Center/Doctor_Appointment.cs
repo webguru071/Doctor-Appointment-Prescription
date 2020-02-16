@@ -22,13 +22,13 @@ namespace Diagnostic_Center
         {
             InitializeComponent();
             user_name = user;
-          
+
             password = pass;
             user_type = type;
             show_appointment();
             show_doctor();
             label99.Visible = false; label100.Visible = false; label101.Visible = false; label102.Visible = false;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace Diagnostic_Center
                                 {
                                     c++;
                                 }
-                           
+
                                 //**************************id generate**********************
                                 int idd = 0;
                                 int new_id = 0;
@@ -84,7 +84,7 @@ namespace Diagnostic_Center
                                 db.sql.Open();
                                 try
                                 {
-                                    SqlCommand cmd1 = new SqlCommand("select max(id) from appointment where date='" + dd + "' and doctor='" + comboBoxEx1.Text+ "'", db.sql);
+                                    SqlCommand cmd1 = new SqlCommand("select max(id) from appointment where date='" + dd + "' and doctor='" + comboBoxEx1.Text + "'", db.sql);
                                     SqlDataReader rd = cmd1.ExecuteReader();
                                     while (rd.Read())
                                     {
@@ -98,29 +98,29 @@ namespace Diagnostic_Center
                                 new_id = idd + 1;
                                 db.sql.Close();
                                 db.sql.Open();
-                                SqlCommand cmd = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','"+new_id+"')", db.sql);
+                                SqlCommand cmd = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + new_id + "')", db.sql);
                                 SqlCommand cmd2 = new SqlCommand("insert into symptoms(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd3 = new SqlCommand("insert into patient_test(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd4 = new SqlCommand("insert into advice(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd5 = new SqlCommand("insert into diagnosis(reg_no)values('" + richTextBox1.Text + "')", db.sql);
-                              
 
-                              
-                             
-                                    if (c > 0)
-                                    {
 
-                                    }
-                                    else
-                                    {
-                                       x = cmd.ExecuteNonQuery();
-                                        cmd2.ExecuteNonQuery();
-                                        cmd3.ExecuteNonQuery();
-                                        cmd4.ExecuteNonQuery();
-                                        cmd5.ExecuteNonQuery();
-                                    }
 
-                             
+
+                                if (c > 0)
+                                {
+
+                                }
+                                else
+                                {
+                                    x = cmd.ExecuteNonQuery();
+                                    cmd2.ExecuteNonQuery();
+                                    cmd3.ExecuteNonQuery();
+                                    cmd4.ExecuteNonQuery();
+                                    cmd5.ExecuteNonQuery();
+                                }
+
+
                                 if (x > 0)
                                 {
                                     MessageBox.Show("Data Inserted Successfully");
@@ -155,12 +155,12 @@ namespace Diagnostic_Center
             try
             {
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
-                DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string dd = d.ToString("yyyy/MM/dd");
+                //DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //string dd = d.ToString("yyyy/MM/dd");
 
                 db.sql.Close();
                 db.sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + dd + "'", db.sql);
+                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + date + "'", db.sql);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridViewX1.Rows.Clear();
@@ -191,10 +191,10 @@ namespace Diagnostic_Center
                 int count = 0;
                 string date = dateTimePicker1.Text;
                 DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string dd = d.ToString("yyyy/MM/dd");
+                string dd = d.ToString();
                 db.sql.Close();
                 db.sql.Open();
-                SqlCommand comand = new SqlCommand("select * from appointment where reg_no='" + richTextBox1.Text + "' and date='" + dd + "'", db.sql);
+                SqlCommand comand = new SqlCommand("select * from appointment where reg_no='" + richTextBox1.Text + "' and date='" + date + "'", db.sql);
                 SqlDataReader reader = comand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -209,9 +209,37 @@ namespace Diagnostic_Center
                     try
                     {
                         int x = 0;
-                        if (richTextBox1.Text == "" || richTextBox2.Text == "" || richTextBox3.Text == "" || richTextBox4.Text == "" || comboBoxEx3.Text == "" || dateTimePicker1.Text == "" || comboBoxEx1.Text == "" || richTextBox6.Text == "")
+                        if (string.IsNullOrEmpty(comboBoxEx1.Text))
                         {
-                            MessageBox.Show("Provide all the information");
+                            MessageBox.Show("Please Select Doctor!!!");
+                        }
+                        else if (string.IsNullOrEmpty(richTextBox6.Text) || !int.TryParse(richTextBox6.Text, out int n))
+                        {
+                            MessageBox.Show("Valid Doctor Fees is Required!!!");
+                        }
+                        else if (string.IsNullOrEmpty(richTextBox1.Text) || !int.TryParse(richTextBox1.Text, out int o))
+                        {
+                            MessageBox.Show("Valid Appointment No is Required.");
+                        }
+                        else if (string.IsNullOrEmpty(richTextBox2.Text))
+                        {
+                            MessageBox.Show("Patient Name is Required!!!");
+                        }
+                        else if (string.IsNullOrEmpty(richTextBox3.Text))
+                        {
+                            MessageBox.Show("Address is Required!!!");
+                        }
+                        else if (string.IsNullOrEmpty(richTextBox4.Text) || !int.TryParse(richTextBox4.Text, out int p))
+                        {
+                            MessageBox.Show("Valid Age is Required!!!");
+                        }
+                        else if (string.IsNullOrEmpty(comboBoxEx3.Text))
+                        {
+                            MessageBox.Show("Gender is Required!!!");
+                        }
+                        else if (string.IsNullOrEmpty(dateTimePicker1.Text))
+                        {
+                            MessageBox.Show("Appointment Date is Required!!!");
                         }
                         else
                         {
@@ -233,18 +261,19 @@ namespace Diagnostic_Center
                                 db.sql.Open();
                                 if (label101.Visible == true)
                                 {
-                                    SqlCommand cmd1 = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','F',N'" + richTextBox8.Text+ "')", db.sql);
-                                     x = cmd1.ExecuteNonQuery();
+                                    SqlCommand cmd1 = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','F',N'" + richTextBox8.Text + "')", db.sql);
+                                    x = cmd1.ExecuteNonQuery();
                                 }
-                                else {
+                                else
+                                {
                                     SqlCommand cmd = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','P',N'" + richTextBox8.Text + "')", db.sql);
-                                     x = cmd.ExecuteNonQuery();                                
+                                    x = cmd.ExecuteNonQuery();
                                 }
                                 SqlCommand cmd2 = new SqlCommand("insert into symptoms(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd3 = new SqlCommand("insert into patient_test(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd4 = new SqlCommand("insert into advice(reg_no)values('" + richTextBox1.Text + "')", db.sql);
                                 SqlCommand cmd5 = new SqlCommand("insert into diagnosis(reg_no)values('" + richTextBox1.Text + "')", db.sql);
-                                SqlCommand cmd6 = new SqlCommand("insert into user_cash_collection_doctor(user_name,password,reg_no,name,paid,date,date2)values('" + user_name + "','" + password + "','" + richTextBox1.Text + "','" + richTextBox2.Text+ "','" + richTextBox6.Text + "','" + date + "','" + dd + "')", db.sql);
+                                SqlCommand cmd6 = new SqlCommand("insert into user_cash_collection_doctor(user_name,password,reg_no,name,paid,date,date2)values('" + user_name + "','" + password + "','" + richTextBox1.Text + "','" + richTextBox2.Text + "','" + richTextBox6.Text + "','" + date + "','" + dd + "')", db.sql);
 
                                 if (c > 0)
                                 {
@@ -317,7 +346,7 @@ namespace Diagnostic_Center
                     {
                         comboBoxEx1.Items.Add(name);
                         comboBoxEx2.Items.Add(name);
-                      
+
                     }
                 }
 
@@ -337,7 +366,7 @@ namespace Diagnostic_Center
 
                 db.sql.Close();
                 db.sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + dd + "' and doctor='" + comboBoxEx2.Text+ "' ", db.sql);
+                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + dd + "' and doctor='" + comboBoxEx2.Text + "' ", db.sql);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridViewX1.Rows.Clear();
@@ -403,7 +432,7 @@ namespace Diagnostic_Center
 
                 db.sql.Close();
                 db.sql.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where  name like'%" + richTextBox7.Text + "%'and date='"+dd+"' ", db.sql);
+                SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where  name like'%" + richTextBox7.Text + "%'and date='" + dd + "' ", db.sql);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 dataGridViewX1.Rows.Clear();
@@ -502,14 +531,14 @@ namespace Diagnostic_Center
             {
                 richTextBox1.Text = "1";
             }
-        
+
         }
         private void dataGridViewX1_Click(object sender, EventArgs e)
         {
             try
             {
                 int c = 0;
-                 reg = dataGridViewX1.SelectedRows[0].Cells[0].Value.ToString();
+                reg = dataGridViewX1.SelectedRows[0].Cells[0].Value.ToString();
                 string name = dataGridViewX1.SelectedRows[0].Cells[1].Value.ToString();
                 string doctor = dataGridViewX1.SelectedRows[0].Cells[2].Value.ToString();
                 string date = dataGridViewX1.SelectedRows[0].Cells[3].Value.ToString();
@@ -518,28 +547,28 @@ namespace Diagnostic_Center
                 string sex = "";
                 string weight = "";
                 string referance = "";
-                string address="";
+                string address = "";
                 db.sql.Close();
                 db.sql.Open();
-                SqlCommand cmd = new SqlCommand("select * from appointment where reg_no='"+reg+"'",db.sql);
+                SqlCommand cmd = new SqlCommand("select * from appointment where reg_no='" + reg + "'", db.sql);
                 SqlDataReader read = cmd.ExecuteReader();
                 while (read.Read())
                 {
                     c++;
-                   
-                    age=read[3].ToString();
-                    sex=read[4].ToString();
-                    weight=read[9].ToString();
-                    referance=read[5].ToString();
-                    address=read[2].ToString();
+
+                    age = read[3].ToString();
+                    sex = read[4].ToString();
+                    weight = read[9].ToString();
+                    referance = read[5].ToString();
+                    address = read[2].ToString();
                     fees = read[8].ToString();
-                    
+
                 }
                 if (c > 0)
                 {
-                   
+
                     comboBoxEx1.Text = doctor;
-                  
+
                     richTextBox1.Text = reg;
                     richTextBox2.Text = name;
                     richTextBox6.Text = fees;
@@ -549,13 +578,13 @@ namespace Diagnostic_Center
                     richTextBox47.Text = weight;
                     richTextBox5.Text = referance;
                     dateTimePicker1.Text = date;
-                   
+
                 }
                 db.sql.Close();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -569,7 +598,7 @@ namespace Diagnostic_Center
                 db.sql.Close();
                 db.sql.Open();
                 SqlCommand cmd = new SqlCommand("update appointment set name=N'" + richTextBox2.Text + "',address=N'" + richTextBox3.Text + "',age=N'" + richTextBox4.Text + "',sex=N'" + comboBoxEx3.Text + "',doctor=N'" + comboBoxEx1.Text + "',fees=N'" + richTextBox6.Text + "',date='" + dd + "',weight=N'" + richTextBox47.Text + "',referance=N'" + richTextBox5.Text + "',card_id=N'" + richTextBox27.Text + "',hospital_id=N'" + richTextBox8.Text + "' where reg_no=N'" + richTextBox1.Text + "'", db.sql);
-                SqlCommand cmd1 = new SqlCommand("update user_cash_collection_doctor set paid='" + richTextBox6.Text+ "' where reg_no=N'" + richTextBox1.Text + "'", db.sql);
+                SqlCommand cmd1 = new SqlCommand("update user_cash_collection_doctor set paid='" + richTextBox6.Text + "' where reg_no=N'" + richTextBox1.Text + "'", db.sql);
                 int a = cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 if (a > 0)
@@ -580,33 +609,34 @@ namespace Diagnostic_Center
                 db.sql.Close();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             try
-            {int a =0;
+            {
+                int a = 0;
                 db.sql.Close();
                 db.sql.Open();
-                DialogResult r = MessageBox.Show("Do You want to delete this..??","Alert",MessageBoxButtons.YesNo,MessageBoxIcon.Error);
+                DialogResult r = MessageBox.Show("Do You want to delete this..??", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 if (r == DialogResult.Yes)
                 {
-                    SqlCommand cmd = new SqlCommand("delete from appointment where reg_no='" + richTextBox1.Text+ "'", db.sql);
+                    SqlCommand cmd = new SqlCommand("delete from appointment where reg_no='" + richTextBox1.Text + "'", db.sql);
                     SqlCommand cmd1 = new SqlCommand("delete from symptoms where reg_no='" + richTextBox1.Text + "'", db.sql);
-                    SqlCommand cmd2= new SqlCommand("delete from patient_test where reg_no='" + richTextBox1.Text + "'", db.sql);
-                    SqlCommand cmd3= new SqlCommand("delete from advice where reg_no='" + richTextBox1.Text + "'", db.sql);
+                    SqlCommand cmd2 = new SqlCommand("delete from patient_test where reg_no='" + richTextBox1.Text + "'", db.sql);
+                    SqlCommand cmd3 = new SqlCommand("delete from advice where reg_no='" + richTextBox1.Text + "'", db.sql);
                     SqlCommand cmd4 = new SqlCommand("delete from diagnosis where reg_no='" + richTextBox1.Text + "'", db.sql);
                     SqlCommand cmd5 = new SqlCommand("delete from user_cash_collection_doctor where reg_no='" + richTextBox1.Text + "'", db.sql);
 
                     try
                     {
-                         a = cmd.ExecuteNonQuery();
+                        a = cmd.ExecuteNonQuery();
                     }
                     catch
-                    { 
+                    {
                     }
                     try
                     {
@@ -641,8 +671,8 @@ namespace Diagnostic_Center
                 }
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -656,7 +686,7 @@ namespace Diagnostic_Center
             try
             {
                 int c = 0;
-                string fees ="";
+                string fees = "";
                 db.sql.Close();
                 db.sql.Open();
                 SqlCommand cmd = new SqlCommand("select * from refer_doctor where name='" + comboBoxEx1.Text + "'", db.sql);
@@ -665,7 +695,7 @@ namespace Diagnostic_Center
                 {
 
                     c++;
-                    fees =r[5].ToString();
+                    fees = r[5].ToString();
                 }
                 if (c > 0)
                 {
@@ -685,7 +715,7 @@ namespace Diagnostic_Center
         {
             try
             {
-                int c= 0;
+                int c = 0;
                 string name = "";
                 string address = "";
                 string sex = "";
@@ -699,21 +729,21 @@ namespace Diagnostic_Center
                 db.sql.Close();
                 db.sql.Open();
 
-                SqlCommand cmd = new SqlCommand("select * from appointment where reg_no='" + richTextBox1.Text+ "'", db.sql);
+                SqlCommand cmd = new SqlCommand("select * from appointment where reg_no='" + richTextBox1.Text + "'", db.sql);
                 SqlDataReader read = cmd.ExecuteReader();
                 while (read.Read())
                 {
                     c++;
-                     name =read[1].ToString();
-                     address = read[2].ToString();
-                     sex =read[4].ToString();
-                     age = read[3].ToString();
-                     weight =read[9].ToString();
-                     referance =read[5].ToString();
-                     doctor = read[7].ToString();
-                     fees = read[8].ToString();
-                     card = read[11].ToString();
-                     hospital = read[14].ToString();
+                    name = read[1].ToString();
+                    address = read[2].ToString();
+                    sex = read[4].ToString();
+                    age = read[3].ToString();
+                    weight = read[9].ToString();
+                    referance = read[5].ToString();
+                    doctor = read[7].ToString();
+                    fees = read[8].ToString();
+                    card = read[11].ToString();
+                    hospital = read[14].ToString();
                 }
                 if (c > 0)
                 {
@@ -744,8 +774,8 @@ namespace Diagnostic_Center
                 db.sql.Close();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -814,10 +844,10 @@ namespace Diagnostic_Center
                 if (loop == 0)
                 {
 
-                    
+
                     label99.Visible = false; label100.Visible = false; label101.Visible = false; label102.Visible = false;
                     richTextBox7.Clear();
-                    
+
                 }
                 db.sql.Close();
             }
@@ -834,7 +864,7 @@ namespace Diagnostic_Center
                 db.sql.Close();
                 db.sql.Open();
                 int loop = 0;
-                SqlCommand cmd = new SqlCommand("select * from patient_histroy where reg_no='"+richTextBox8.Text+ "'", db.sql);
+                SqlCommand cmd = new SqlCommand("select * from patient_histroy where reg_no='" + richTextBox8.Text + "'", db.sql);
                 SqlDataReader read = cmd.ExecuteReader();
                 while (read.Read())
                 {
@@ -843,7 +873,7 @@ namespace Diagnostic_Center
                     richTextBox3.Text = read[5].ToString();
                     richTextBox4.Text = read[4].ToString();
                     comboBoxEx3.Text = read[3].ToString();
-                    
+
 
 
                 }
