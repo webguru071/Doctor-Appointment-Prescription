@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
+
 namespace Diagnostic_Center
 {
     public partial class Doctor_Appointment : Form
@@ -17,6 +19,7 @@ namespace Diagnostic_Center
         string password = "";
         string user_type = "";
         string reg = "";
+        string pathString = "";
         connection db = new connection();
         public Doctor_Appointment(string user, string pass, string type)
         {
@@ -261,12 +264,12 @@ namespace Diagnostic_Center
                                 db.sql.Open();
                                 if (label101.Visible == true)
                                 {
-                                    SqlCommand cmd1 = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','F',N'" + richTextBox8.Text + "')", db.sql);
+                                    SqlCommand cmd1 = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id,image)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','F',N'" + richTextBox8.Text + "',N'" + pathString + "')", db.sql);
                                     x = cmd1.ExecuteNonQuery();
                                 }
                                 else
                                 {
-                                    SqlCommand cmd = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','P',N'" + richTextBox8.Text + "')", db.sql);
+                                    SqlCommand cmd = new SqlCommand("insert into appointment(reg_no,name,address,age,sex,referance,date,doctor,fees,weight,card_id,card_type,hospital_id,image)values(N'" + richTextBox1.Text + "',N'" + richTextBox2.Text + "',N'" + richTextBox3.Text + "',N'" + richTextBox4.Text + "',N'" + comboBoxEx3.Text + "',N'" + richTextBox5.Text + "',N'" + dd + "',N'" + comboBoxEx1.Text + "',N'" + fees + "',N'" + richTextBox47.Text + "','" + richTextBox27.Text + "','P',N'" + richTextBox8.Text + "',N'"+pathString + "')", db.sql);
                                     x = cmd.ExecuteNonQuery();
                                 }
                                 SqlCommand cmd2 = new SqlCommand("insert into symptoms(reg_no)values('" + richTextBox1.Text + "')", db.sql);
@@ -898,6 +901,30 @@ namespace Diagnostic_Center
         {
             All_Appointment_print app = new All_Appointment_print();
             app.Show();
+        }
+
+        private void btnImageUpload_Click(object sender, EventArgs e)
+        {            
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                PictureBox pBox = sender as PictureBox;
+                dialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //pBox.Image = Image.FromFile(dialog.FileName);
+                    string fName = Path.GetFileName(dialog.FileName); 
+                    string folder = "E:\\Upload";
+                    var imagePath = Path.Combine(folder,fName);
+                    //pathString = "E:\\Upload\\" + fName;
+                    pathString= imagePath;
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

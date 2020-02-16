@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label133 = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -80,8 +80,11 @@
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.pBoxPatient = new System.Windows.Forms.PictureBox();
+            this.btnImageUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPatient)).BeginInit();
             this.SuspendLayout();
             // 
             // label133
@@ -97,7 +100,7 @@
             // 
             this.button16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.Location = new System.Drawing.Point(864, 46);
+            this.button16.Location = new System.Drawing.Point(853, 46);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(69, 26);
             this.button16.TabIndex = 61;
@@ -121,7 +124,7 @@
             this.richTextBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.richTextBox7.Location = new System.Drawing.Point(939, 46);
+            this.richTextBox7.Location = new System.Drawing.Point(918, 46);
             this.richTextBox7.Name = "richTextBox7";
             this.richTextBox7.Size = new System.Drawing.Size(156, 33);
             this.richTextBox7.TabIndex = 58;
@@ -142,19 +145,19 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(477, 84);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(618, 484);
+            this.dataGridViewX1.Size = new System.Drawing.Size(597, 549);
             this.dataGridViewX1.TabIndex = 57;
             this.dataGridViewX1.Click += new System.EventHandler(this.dataGridViewX1_Click);
             // 
@@ -191,6 +194,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.btnImageUpload);
+            this.groupBox3.Controls.Add(this.pBoxPatient);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
@@ -219,7 +224,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(26, 73);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(417, 504);
+            this.groupBox3.Size = new System.Drawing.Size(417, 560);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PATIENT DETAILS";
@@ -229,7 +234,7 @@
             this.button4.BackColor = System.Drawing.Color.Transparent;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(273, 431);
+            this.button4.Location = new System.Drawing.Point(277, 507);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(71, 38);
             this.button4.TabIndex = 13;
@@ -240,7 +245,7 @@
             // button3
             // 
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(201, 431);
+            this.button3.Location = new System.Drawing.Point(205, 507);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(71, 38);
             this.button3.TabIndex = 12;
@@ -260,7 +265,7 @@
             // button22
             // 
             this.button22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button22.Location = new System.Drawing.Point(346, 431);
+            this.button22.Location = new System.Drawing.Point(350, 507);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(64, 38);
             this.button22.TabIndex = 14;
@@ -336,7 +341,7 @@
             // button2
             // 
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(77, 431);
+            this.button2.Location = new System.Drawing.Point(81, 507);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 38);
             this.button2.TabIndex = 11;
@@ -357,7 +362,7 @@
             // 
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(11, 431);
+            this.button1.Location = new System.Drawing.Point(15, 507);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(65, 38);
             this.button1.TabIndex = 10;
@@ -629,7 +634,7 @@
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(939, 9);
+            this.button5.Location = new System.Drawing.Point(918, 9);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(145, 26);
             this.button5.TabIndex = 127;
@@ -637,11 +642,29 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // pBoxPatient
+            // 
+            this.pBoxPatient.Location = new System.Drawing.Point(142, 401);
+            this.pBoxPatient.Name = "pBoxPatient";
+            this.pBoxPatient.Size = new System.Drawing.Size(125, 100);
+            this.pBoxPatient.TabIndex = 128;
+            this.pBoxPatient.TabStop = false;
+            // 
+            // btnImageUpload
+            // 
+            this.btnImageUpload.Location = new System.Drawing.Point(277, 455);
+            this.btnImageUpload.Name = "btnImageUpload";
+            this.btnImageUpload.Size = new System.Drawing.Size(104, 46);
+            this.btnImageUpload.TabIndex = 129;
+            this.btnImageUpload.Text = "Upload Image";
+            this.btnImageUpload.UseVisualStyleBackColor = true;
+            this.btnImageUpload.Click += new System.EventHandler(this.btnImageUpload_Click);
+            // 
             // Doctor_Appointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 594);
+            this.ClientSize = new System.Drawing.Size(1099, 659);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.richTextBox8);
             this.Controls.Add(this.label1);
@@ -667,6 +690,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPatient)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -725,5 +749,7 @@
         private System.Windows.Forms.RichTextBox richTextBox8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.PictureBox pBoxPatient;
+        private System.Windows.Forms.Button btnImageUpload;
     }
 }
