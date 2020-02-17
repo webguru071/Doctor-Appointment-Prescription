@@ -2729,7 +2729,7 @@ SELECT reg_no, quanality, consistency, blood, helmint, odour, mucus, colour, rea
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Diagnostic_Center.Properties.Settings.Default.connection;
+            this._connection.ConnectionString = global::Diagnostic_Center.Properties.Settings.Default.databaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3819,7 +3819,7 @@ SELECT id, name, contact, address, others_id, date, gender, age, referby, referd
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Diagnostic_Center.Properties.Settings.Default.connection;
+            this._connection.ConnectionString = global::Diagnostic_Center.Properties.Settings.Default.databaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

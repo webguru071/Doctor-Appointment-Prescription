@@ -158,9 +158,8 @@ namespace Diagnostic_Center
             try
             {
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
-                //DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //string dd = d.ToString("yyyy/MM/dd");
-
+                DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string dd = d.ToString("yyyy/MM/dd");
                 db.sql.Close();
                 db.sql.Open();
                 SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + date + "'", db.sql);
@@ -216,11 +215,11 @@ namespace Diagnostic_Center
                         {
                             MessageBox.Show("Please Select Doctor!!!");
                         }
-                        else if (string.IsNullOrEmpty(richTextBox6.Text) || !int.TryParse(richTextBox6.Text, out int n))
+                        else if (string.IsNullOrEmpty(richTextBox6.Text))
                         {
                             MessageBox.Show("Valid Doctor Fees is Required!!!");
                         }
-                        else if (string.IsNullOrEmpty(richTextBox1.Text) || !int.TryParse(richTextBox1.Text, out int o))
+                        else if (string.IsNullOrEmpty(richTextBox1.Text))
                         {
                             MessageBox.Show("Valid Appointment No is Required.");
                         }
@@ -232,7 +231,7 @@ namespace Diagnostic_Center
                         {
                             MessageBox.Show("Address is Required!!!");
                         }
-                        else if (string.IsNullOrEmpty(richTextBox4.Text) || !int.TryParse(richTextBox4.Text, out int p))
+                        else if (string.IsNullOrEmpty(richTextBox4.Text))
                         {
                             MessageBox.Show("Valid Age is Required!!!");
                         }
@@ -259,7 +258,8 @@ namespace Diagnostic_Center
                                 {
                                     c++;
                                 }
-
+                                File.Copy(txtImageTitle.Text, Path.Combine(@"E:\Upload", Path.GetFileName(txtImageTitle.Text)),true);
+                                pathString = @"E:\Upload\" + Path.GetFileName(txtImageTitle.Text);
                                 db.sql.Close();
                                 db.sql.Open();
                                 if (label101.Visible == true)
@@ -299,6 +299,7 @@ namespace Diagnostic_Center
                                     MessageBox.Show("Data Inserted Successfully");
                                     token token = new token(richTextBox1.Text);
                                     token.Show();
+                                    CLearAllField();
                                 }
                                 else
                                 {
@@ -323,6 +324,18 @@ namespace Diagnostic_Center
             {
 
             }
+        }
+
+        private void CLearAllField()
+        {
+            richTextBox1.Text = "";
+            richTextBox2.Clear();
+            richTextBox3.Clear();
+            richTextBox4.Clear();
+            comboBoxEx3.Text = "";
+            richTextBox5.Clear();
+            comboBoxEx1.Text = "";
+            richTextBox6.Clear();
         }
 
         private void button22_Click(object sender, EventArgs e)
@@ -907,18 +920,12 @@ namespace Diagnostic_Center
         {            
             try
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                PictureBox pBox = sender as PictureBox;
-                dialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                OpenFileDialog open = new OpenFileDialog();                
+                open.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                if (open.ShowDialog() == DialogResult.OK)
                 {
-                    //pBox.Image = Image.FromFile(dialog.FileName);
-                    string fName = Path.GetFileName(dialog.FileName); 
-                    string folder = "E:\\Upload";
-                    var imagePath = Path.Combine(folder,fName);
-                    //pathString = "E:\\Upload\\" + fName;
-                    pathString= imagePath;
-                    
+                    txtImageTitle.Text = open.FileName;
+                    pBoxPatient.Image = new Bitmap(open.FileName);
                 }
             }
             catch(Exception ex)

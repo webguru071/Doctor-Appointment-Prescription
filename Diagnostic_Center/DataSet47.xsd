@@ -2,9 +2,10 @@
 <xs:schema id="DataSet47" targetNamespace="http://tempuri.org/DataSet47.xsd" xmlns:mstns="http://tempuri.org/DataSet47.xsd" xmlns="http://tempuri.org/DataSet47.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="databaseConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="databaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Diagnostic_Center.Properties.Settings.GlobalReference.Default.databaseConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="databaseConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="databaseConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Diagnostic_Center.Properties.Settings.GlobalReference.Default.databaseConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="databaseConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="databaseConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Diagnostic_Center.Properties.Settings.GlobalReference.Default.databaseConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="stoolTableAdapter" GeneratorDataComponentClassName="stoolTableAdapter" Name="stool" UserDataComponentName="stoolTableAdapter">
@@ -329,7 +330,7 @@ SELECT id, name, contact, address, others_id, date, gender, age, referby, referd
   <xs:element name="DataSet47" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet47" msprop:Generator_UserDSName="DataSet47">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="stool" msprop:Generator_TableClassName="stoolDataTable" msprop:Generator_TableVarName="tablestool" msprop:Generator_TablePropName="stool" msprop:Generator_RowDeletingName="stoolRowDeleting" msprop:Generator_RowChangingName="stoolRowChanging" msprop:Generator_RowEvHandlerName="stoolRowChangeEventHandler" msprop:Generator_RowDeletedName="stoolRowDeleted" msprop:Generator_UserTableName="stool" msprop:Generator_RowChangedName="stoolRowChanged" msprop:Generator_RowEvArgName="stoolRowChangeEvent" msprop:Generator_RowClassName="stoolRow">
+        <xs:element name="stool" msprop:Generator_TableClassName="stoolDataTable" msprop:Generator_TableVarName="tablestool" msprop:Generator_RowChangedName="stoolRowChanged" msprop:Generator_TablePropName="stool" msprop:Generator_RowDeletingName="stoolRowDeleting" msprop:Generator_RowChangingName="stoolRowChanging" msprop:Generator_RowEvHandlerName="stoolRowChangeEventHandler" msprop:Generator_RowDeletedName="stoolRowDeleted" msprop:Generator_RowClassName="stoolRow" msprop:Generator_UserTableName="stool" msprop:Generator_RowEvArgName="stoolRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="reg_no" msprop:Generator_ColumnVarNameInTable="columnreg_no" msprop:Generator_ColumnPropNameInRow="reg_no" msprop:Generator_ColumnPropNameInTable="reg_noColumn" msprop:Generator_UserColumnName="reg_no" type="xs:int" />
@@ -483,7 +484,7 @@ SELECT id, name, contact, address, others_id, date, gender, age, referby, referd
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="diagnostic_person" msprop:Generator_TableClassName="diagnostic_personDataTable" msprop:Generator_TableVarName="tablediagnostic_person" msprop:Generator_TablePropName="diagnostic_person" msprop:Generator_RowDeletingName="diagnostic_personRowDeleting" msprop:Generator_RowChangingName="diagnostic_personRowChanging" msprop:Generator_RowEvHandlerName="diagnostic_personRowChangeEventHandler" msprop:Generator_RowDeletedName="diagnostic_personRowDeleted" msprop:Generator_UserTableName="diagnostic_person" msprop:Generator_RowChangedName="diagnostic_personRowChanged" msprop:Generator_RowEvArgName="diagnostic_personRowChangeEvent" msprop:Generator_RowClassName="diagnostic_personRow">
+        <xs:element name="diagnostic_person" msprop:Generator_TableClassName="diagnostic_personDataTable" msprop:Generator_TableVarName="tablediagnostic_person" msprop:Generator_RowChangedName="diagnostic_personRowChanged" msprop:Generator_TablePropName="diagnostic_person" msprop:Generator_RowDeletingName="diagnostic_personRowDeleting" msprop:Generator_RowChangingName="diagnostic_personRowChanging" msprop:Generator_RowEvHandlerName="diagnostic_personRowChangeEventHandler" msprop:Generator_RowDeletedName="diagnostic_personRowDeleted" msprop:Generator_RowClassName="diagnostic_personRow" msprop:Generator_UserTableName="diagnostic_person" msprop:Generator_RowEvArgName="diagnostic_personRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />

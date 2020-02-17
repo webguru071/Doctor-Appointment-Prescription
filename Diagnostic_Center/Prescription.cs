@@ -50,6 +50,9 @@ namespace Diagnostic_Center
 
                 string advice = "not found";
                 string days = "";
+                string nextApp = "";
+                string appNo = "";
+                string imageUrl = @"E:\Upload\ff.jpg";
                 db.sql.Close();
                 db.sql.Open();
                 SqlCommand cmd = new SqlCommand("select * from advice where reg_no='" + id + "'", db.sql);
@@ -60,19 +63,31 @@ namespace Diagnostic_Center
 
                     days = read[2].ToString();
                 }
+                db.sql.Close();
+                db.sql.Open();
+                SqlCommand cmdNextAppointment = new SqlCommand("select * from nextAppointment where reg_no='" + id + "'", db.sql);
+                SqlDataReader readNextAppointment = cmdNextAppointment.ExecuteReader();
+                while (readNextAppointment.Read())
+                {
+                    nextApp = readNextAppointment[2].ToString();
+                    appNo = readNextAppointment[1].ToString();
+                }
 
                 ReportParameterCollection r = new ReportParameterCollection();
                 r.Add(new ReportParameter("advice", advice));
                 r.Add(new ReportParameter("days", days));
+                r.Add(new ReportParameter("nextApp", nextApp));
+                r.Add(new ReportParameter("appNo", appNo));
+                r.Add(new ReportParameter("imageUrl", imageUrl));
                 this.reportViewer1.LocalReport.SetParameters(r);
                 this.reportViewer1.RefreshReport();
 
                 db.sql.Close();
                 this.reportViewer1.RefreshReport();
             }
-            catch
-            { 
-            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

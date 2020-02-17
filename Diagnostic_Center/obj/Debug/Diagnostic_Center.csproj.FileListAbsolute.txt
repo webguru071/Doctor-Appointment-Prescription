@@ -3646,14 +3646,8 @@ F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\data
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Doctors Diagnostic.exe.config
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Doctors Diagnostic.exe
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Doctors Diagnostic.pdb
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\DevComponents.DotNetBar2.dll
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\EntityFramework.dll
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\SkinSoft.VisualStyler.dll
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Microsoft.SqlServer.Types.dll
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\DevComponents.DotNetBar2.xml
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\EntityFramework.xml
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\SkinSoft.VisualStyler.xml
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csprojAssemblyReference.cache
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.Add_bill_list.resources
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.add_doctor.resources
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.Add_Employee.resources
@@ -3795,6 +3789,8 @@ F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diag
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.Xray2.resources
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.xray_report.resources
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csproj.GenerateResource.cache
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csproj.CopyComplete
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Doctors Diagnostic.exe
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Doctors Diagnostic.pdb
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csprojResolveAssemblyReference.cache
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\RdlCompile.cache
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\RdlCompile.compiled

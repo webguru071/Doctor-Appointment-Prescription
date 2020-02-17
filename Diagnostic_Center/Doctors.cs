@@ -226,15 +226,19 @@ namespace Diagnostic_Center
                 db.sql.Open();
                 SqlCommand cmd2 = new SqlCommand("update advice set advice=N'" + richTextBox12.Text + "',days=N'" + days_bac + "' where reg_no='" + richTextBox1.Text + "'", db.sql);
                 cmd2.ExecuteNonQuery();
+                string regNo = richTextBox1.Text;
+                string nextApp = txtAppTime.Text + " " + cmbAppTimeType.Text;
+                SqlCommand cmdNextAppointment = new SqlCommand(@"insert into nextAppointment (reg_no,days) values('" + regNo + @"','" + nextApp + @"')", db.sql);
+                cmdNextAppointment.ExecuteNonQuery();
                 MessageBox.Show("Data Saved Successfull");
                 db.sql.Close();
                 Prescription po = new Prescription(richTextBox1.Text);
                 po.Show();
 
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -276,7 +280,7 @@ namespace Diagnostic_Center
         {
             try
             {
-                if (string.IsNullOrEmpty(richTextBox1.Text) || !int.TryParse(richTextBox1.Text, out int n))
+                if (string.IsNullOrEmpty(richTextBox1.Text))
                 {
                     MessageBox.Show("Please Give Numeric Appointment Number.");
                 }
@@ -284,7 +288,7 @@ namespace Diagnostic_Center
                 {
                     MessageBox.Show("Please Give Patient Name.");
                 }
-                else if (string.IsNullOrEmpty(richTextBox4.Text) && int.TryParse(richTextBox4.Text, out int c))
+                else if (string.IsNullOrEmpty(richTextBox4.Text))
                 {
                     MessageBox.Show("Please Give Patient Age.");
                 }
@@ -364,16 +368,15 @@ namespace Diagnostic_Center
                     string sex = read[4].ToString();
                     string referance = read[5].ToString();
                     string date = read[6].ToString();
-                    //DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
-                    //string dd = convert.ToString("dd/MM/yyyy");
+                    DateTime convert = DateTime.ParseExact(date, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                    string dd = convert.ToString("dd/MM/yyyy");
                     doctor = read[7].ToString();
                     richTextBox2.Text = name;
                     richTextBox3.Text = address;
                     richTextBox4.Text = age;
                     comboBoxEx3.Text = sex;
                     richTextBox5.Text = referance;
-                    dateTimeInput1.Text = date;
-
+                    dateTimeInput1.Text = dd;
                 }
                 if (d == 0)
                 {
