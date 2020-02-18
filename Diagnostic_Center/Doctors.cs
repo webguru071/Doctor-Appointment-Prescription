@@ -964,7 +964,7 @@ namespace Diagnostic_Center
             {
                 string date = dateTimePicker1.Text;
                 DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string dd = d.ToString("yyyy/MM/dd");
+                string dd = Convert.ToDateTime(d).ToString("yyyy-MM-dd");
                 db.sql.Close();
                 db.sql.Open();
                 SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + dd + "'", db.sql);

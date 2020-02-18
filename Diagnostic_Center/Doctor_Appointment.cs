@@ -42,7 +42,8 @@ namespace Diagnostic_Center
                 int count = 0;
                 string date = dateTimePicker1.Text;
                 DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string dd = d.ToString("yyyy/MM/dd");
+                string dd = Convert.ToDateTime(d).ToString("yyyy-MM-dd");
+                //d.ToString("yyyy/MM/dd");
                 db.sql.Close();
                 db.sql.Open();
                 SqlCommand comand = new SqlCommand("select * from appointment where reg_no='" + richTextBox1.Text + "' and date='" + dd + "'", db.sql);
@@ -158,8 +159,7 @@ namespace Diagnostic_Center
             try
             {
                 string date = DateTime.Now.ToString("dd/MM/yyyy");
-                DateTime d = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                string dd = d.ToString("yyyy/MM/dd");
+                string dd = DateTime.Now.ToString("yyyy-MM-dd");
                 db.sql.Close();
                 db.sql.Open();
                 SqlDataAdapter sda = new SqlDataAdapter("select * from appointment where date='" + date + "'", db.sql);
