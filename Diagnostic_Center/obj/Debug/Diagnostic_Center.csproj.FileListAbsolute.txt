@@ -3791,6 +3791,21 @@ F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diag
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csproj.GenerateResource.cache
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Doctors Diagnostic.exe
 F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Doctors Diagnostic.pdb
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csprojResolveAssemblyReference.cache
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\RdlCompile.cache
-F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\RdlCompile.compiled
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\DevComponents.DotNetBar2.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\SkinSoft.VisualStyler.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\Microsoft.SqlServer.Types.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\DevComponents.DotNetBar2.xml
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\SkinSoft.VisualStyler.xml
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csprojAssemblyReference.cache
+F:\Projects\And IT\WFP\Doctor Diagnostic_update\Diagnostic_Center\obj\Debug\Diagnostic_Center.csproj.CopyComplete

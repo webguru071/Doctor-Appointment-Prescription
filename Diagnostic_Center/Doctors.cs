@@ -1150,5 +1150,171 @@ namespace Diagnostic_Center
                 richTextBox1.Text = "1";
             }
         }
+
+        private void btnRoutineSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                db.sql.Close();
+                db.sql.Open();
+                SqlCommand cmd = new SqlCommand(@"insert into tblRoutine (routine_text) values('" +txtRoutineText.Text+ "')", db.sql);
+                int a = cmd.ExecuteNonQuery();
+                if (a > 0)
+                {
+                    MessageBox.Show("Saved Sucessfully");
+                    LoadDataOnRoutineGV();
+                    ClearAllRoutineField();
+                }
+                db.sql.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnRoutineUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                db.sql.Close();
+                db.sql.Open();
+                SqlCommand cmd = new SqlCommand("update tblRoutine set routine_text='"+txtRoutineText.Text + "' where id=" + Convert.ToInt32(txtRoutineID.Text), db.sql);
+                int a = cmd.ExecuteNonQuery();
+                if (a > 0)
+                {
+                    MessageBox.Show("Update Sucessfull");
+                    LoadDataOnRoutineGV();
+                    ClearAllRoutineField();
+                }
+                db.sql.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnRoutineDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult r = MessageBox.Show("Do You Want to Delete The Routine??", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (r == DialogResult.Yes)
+                {
+                    db.sql.Close();
+                    db.sql.Open();
+                    SqlCommand cmd = new SqlCommand("delete from tblRoutine where id=" + Convert.ToInt32(txtRoutineID.Text), db.sql);
+                    int a = cmd.ExecuteNonQuery();
+                    if (a > 0)
+                    {
+                        MessageBox.Show("Delete Sucessfull");
+                        LoadDataOnRoutineGV();
+                        ClearAllRoutineField();
+                    }
+                    db.sql.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+       // private void txtRoutineSearch_TextChanged(object sender, EventArgs e)
+       //{
+       //     try
+       //     {
+
+       //         db.sql.Close();
+       //         db.sql.Open();
+       //         SqlDataAdapter sda = new SqlDataAdapter("select * from tblRoutine where routine_text like'%" + txtRoutineSearch.Text + "%'", db.sql);
+       //         DataTable dt = new DataTable();
+       //         sda.Fill(dt);
+       //         dataGVRoutine.Rows.Clear();
+       //         dataGVRoutine.DataSource = null;
+       //         if (dt != null)
+       //         {
+       //             dataGVRoutine.DataSource = dt;
+       //         }                
+       //         db.sql.Close();
+       //     }
+       //     catch (Exception ex)
+       //     {
+       //         MessageBox.Show(ex.ToString());
+       //     }
+       // }
+        private void ClearAllRoutineField()
+        {
+            txtRoutineID.Text = "";
+            txtRoutineText.Text = "";
+            LoadRoutineNextID();
+        }
+        private void tabItemAddRoutine_Click(object sender, EventArgs e)
+        {
+            LoadDataOnRoutineGV();
+            LoadRoutineNextID();           
+        }
+
+        private void LoadRoutineNextID()
+        {
+            try
+            {
+                db.sql.Close();
+                db.sql.Open();
+                SqlCommand scmd = new SqlCommand(" select ISNULL(max(id),0) from tblRoutine", db.sql);
+                int id = Convert.ToInt32(scmd.ExecuteScalar());
+                txtRoutineID.Text = (id + 1).ToString();
+                db.sql.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void LoadDataOnRoutineGV()
+        {
+            try
+            {
+                db.sql.Close();
+                db.sql.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("select * from tblRoutine", db.sql);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                dataGVRoutine.Rows.Clear();
+                foreach (DataRow item in dt.Rows)
+                {
+                    int n = dataGVRoutine.Rows.Add();
+                    dataGVRoutine.Rows[n].Cells[0].Value = item[0].ToString();
+                    dataGVRoutine.Rows[n].Cells[1].Value = item[1].ToString();
+                }
+                db.sql.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }            
+        }
+
+        private void dataGVRoutine_Click(object sender, EventArgs e)
+        {
+            try
+            {                
+                txtRoutineID.Text = dataGVRoutine.SelectedRows[0].Cells[0].Value.ToString();
+                txtRoutineText.Text = dataGVRoutine.SelectedRows[0].Cells[1].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnRoutineClear_Click(object sender, EventArgs e)
+        {
+            ClearAllRoutineField();
+        }
+
     }
 }
